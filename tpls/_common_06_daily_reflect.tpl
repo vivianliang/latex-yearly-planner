@@ -6,7 +6,7 @@
 \myMash{3}{\myNumDotWidthFull}
 \medskip
 
-\myUnderline{What are some things I could have improved to better achieve my goals?}
+\myUnderline{What are some things I could have improved to better achieve my goals? (Lessons learned)}
 \myMash{3}{\myNumDotWidthFull}
 \medskip
 
