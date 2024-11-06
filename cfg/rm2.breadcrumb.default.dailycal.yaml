@@ -3,5 +3,5 @@ addlasthalfhour: true
 
 layout:
   numbers:
-    dailybottomhour: 8
-    dailytophour: 20
+    dailybottomhour: 9
+    dailytophour: 21
