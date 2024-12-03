@@ -6,6 +6,7 @@
 {{- $day5 := index $days 4 -}}
 {{- $day6 := index $days 5 -}}
 {{- $day7 := index $days 6 -}}
+{{- $today := .Body.Day -}}
 
 \parbox{\myLenTriCol}{\myUnderline{ {{- $day1.WeekLink -}} }}%
 \hspace{\myLenTriColSep}%
@@ -25,5 +26,16 @@
 
 \parbox{\myLenTriCol}{ \myUnderline{ {{- $day7.WeekLink -}} }}%
 \hspace{\myLenTriColSep}%
-\parbox{\dimexpr2\myLenTriCol+\myLenTriColSep}{\myUnderline{Notes\myDummyQ}}
-\myMash{\myNumWeeklyLines}{\myNumDotWidthFull}
+\parbox{\myLenTriCol}{\myUnderline{Notes\myDummyQ}}
+
+\begin{minipage}[t]{\myLenTriCol+\myLenTriCol}
+\vspace{3mm}
+\myDotGrid{\myNumWeeklyLines}{\myNumDotWidthTwoThirds}
+\end{minipage}%
+\hspace{\dimexpr2\myLenTriColSep}%
+\begin{minipage}[t]{\myLenTriCol}
+\vspace{0pt}
+{{- if .Cfg.CalAfterSchedule -}}
+{{- template "monthTabularV2.tpl" dict "Month" .Body.Month "Today" $today -}}
+{{- end -}}
+\end{minipage}%
