@@ -10,6 +10,10 @@
 \end{minipage}%
 \hspace{\myLenTriColSep}%
 \begin{minipage}[t]{\dimexpr2\myLenTriCol+\myLenTriColSep}
+  \myUnderline{Goals\myDummyQ}
+  \myMash{3}{\myNumDotWidthTwoThirds}
+  \vskip\dimexpr5.4mm
+
   \myUnderline{Top priorities\myDummyQ}
   \Repeat{\myNumDailyTodos}{\myTodoLineGray}
   \vskip\dimexpr5.4mm

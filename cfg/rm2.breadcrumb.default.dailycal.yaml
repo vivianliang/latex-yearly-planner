@@ -5,3 +5,5 @@ layout:
   numbers:
     dailybottomhour: 9
     dailytophour: 21
+    dailytodos: 6
+    dailynotes: 24
