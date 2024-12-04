@@ -1,6 +1,7 @@
 package cal
 
 import (
+	"log"
 	"math"
 	"strconv"
 	"strings"
@@ -9,6 +10,7 @@ import (
 	"github.com/kudrykv/latex-yearly-planner/app/components/header"
 	"github.com/kudrykv/latex-yearly-planner/app/components/hyper"
 	"github.com/kudrykv/latex-yearly-planner/app/tex"
+	"github.com/kudrykv/latex-yearly-planner/app/texx"
 )
 
 type Weeks []*Week
@@ -119,13 +121,24 @@ func selectStartWeek(year int, weekStart time.Weekday) Day {
 	return Day{Time: sow}
 }
 
-func (w *Week) WeekNumber(large interface{}) string {
+func (w *Week) WeekNumber(currentWeek, large interface{}) string {
+	log.Println("WeekNumber: currentWeek", currentWeek)
 	wn := w.weekNumber()
 	larg, _ := large.(bool)
 
 	itoa := strconv.Itoa(wn)
 	ref := w.ref()
 	if !larg {
+		log.Println("currentWeek", currentWeek)
+		if cw, ok := currentWeek.(Week); ok {
+			cwn := cw.weekNumber()
+			log.Println("wn", wn, "cwn", cwn)
+			if wn == cwn {
+				return texx.EmphCell(itoa)
+			}
+		} else {
+			log.Println("not ok")
+		}
 		return hyper.Link(ref, itoa)
 	}
 

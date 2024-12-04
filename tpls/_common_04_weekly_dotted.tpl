@@ -7,6 +7,7 @@
 {{- $day6 := index $days 5 -}}
 {{- $day7 := index $days 6 -}}
 {{- $today := .Body.Day -}}
+{{- $currentWeek := .Body.Week -}}
 
 \parbox{\myLenTriCol}{\myUnderline{ {{- $day1.WeekLink -}} }}%
 \hspace{\myLenTriColSep}%
@@ -36,6 +37,7 @@
 \begin{minipage}[t]{\myLenTriCol}
 \vspace{0pt}
 {{- if .Cfg.CalAfterSchedule -}}
-{{- template "monthTabularV2.tpl" dict "Month" .Body.Month "Today" $today -}}
+{{- template "monthTabularV2.tpl" dict "Month" .Body.Month "Week" $currentWeek "Today" $today -}}
 {{- end -}}
+{{- $currentWeek -}}
 \end{minipage}%

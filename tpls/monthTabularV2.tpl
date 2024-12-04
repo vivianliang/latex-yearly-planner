@@ -7,7 +7,7 @@
   {{ if $.Large -}} \hline {{- end }}
   {{ .Month.WeekHeader .Large }} \\ {{ if .Large -}} \noalign{\hrule height \myLenLineThicknessThick} {{- else -}} \hline {{- end}}
   {{- range $i, $week := .Month.Weeks }}
-  {{$week.WeekNumber $.Large}} &
+  {{$week.WeekNumber $.Week $.Large}} &
     {{- range $j, $day := $week.Days -}}
       {{- $day.Day $.Today $.Large -}}
       {{- if eq $j 6 -}}
