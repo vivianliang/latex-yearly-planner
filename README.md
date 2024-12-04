@@ -28,9 +28,17 @@ The following was tested with [POP_OS 22.04.1 LTS](https://pop.system76.com/) un
 PASSES=1 \
 CFG="cfg/base.yaml,cfg/template_breadcrumb.yaml,cfg/sn_a5x.breadcrumb.default.yaml" \
 NAME="sn_a5x.breadcrumb.default" \
-./single.sh</code> 
+./single.sh</code>
 
 [Source](https://github.com/kudrykv/latex-yearly-planner/discussions/34#discussioncomment-3128344)
+
+```
+PLANNER_YEAR=2025 PASSES=1 CFG="cfg/base.yaml,cfg/template_breadcrumb.yaml,cfg/rm2.base.yaml,cfg/rm2.breadcrumb.default.dailycal.yaml" NAME="rm2.breadcrumb.default.ampm.dailycal.dotted.2025" ./single.sh
+```
+Custom text:
+```
+PLANNER_YEAR=2025 PASSES=1 TRANSLATION=english CFG="cfg/base.yaml,cfg/template_breadcrumb.yaml,cfg/rm2.base.yaml,cfg/rm2.breadcrumb.default.dailycal.yaml" NAME="rm2.breadcrumb.default.ampm.dailycal.dotted.2025" ./single.sh
+```
 
 4. Check the "out" directory for the 'pdf' planner. To move it to your device
 , follow the manufacturer's instructions on how to load a PDF on your device.

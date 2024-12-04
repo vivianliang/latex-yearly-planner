@@ -15,6 +15,7 @@ func Weekly(cfg config.Config, tpls []string) (page.Modules, error) {
 			Cfg: cfg,
 			Tpl: tpls[0],
 			Body: map[string]interface{}{
+				"Month":        week.Months[0],
 				"Year":         year,
 				"Week":         week,
 				"Breadcrumb":   week.Breadcrumb(),
