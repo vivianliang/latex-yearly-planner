@@ -37,7 +37,6 @@
 \begin{minipage}[t]{\myLenTriCol}
 \vspace{0pt}
 {{- if .Cfg.CalAfterSchedule -}}
-{{- template "monthTabularV2.tpl" dict "Month" .Body.Month "Week" $currentWeek "Today" $today -}}
+{{- template "monthTabularV2.tpl" dict "Month" .Body.Month "CurrentWeek" $currentWeek "Today" $today -}}
 {{- end -}}
-{{- $currentWeek -}}
 \end{minipage}%

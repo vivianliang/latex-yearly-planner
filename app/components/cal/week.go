@@ -1,7 +1,6 @@
 package cal
 
 import (
-	"log"
 	"math"
 	"strconv"
 	"strings"
@@ -122,22 +121,16 @@ func selectStartWeek(year int, weekStart time.Weekday) Day {
 }
 
 func (w *Week) WeekNumber(currentWeek, large interface{}) string {
-	log.Println("WeekNumber: currentWeek", currentWeek)
 	wn := w.weekNumber()
 	larg, _ := large.(bool)
 
 	itoa := strconv.Itoa(wn)
 	ref := w.ref()
 	if !larg {
-		log.Println("currentWeek", currentWeek)
-		if cw, ok := currentWeek.(Week); ok {
-			cwn := cw.weekNumber()
-			log.Println("wn", wn, "cwn", cwn)
-			if wn == cwn {
+		if cw, ok := currentWeek.(*Week); ok {
+			if cw.weekNumber() == wn {
 				return texx.EmphCell(itoa)
 			}
-		} else {
-			log.Println("not ok")
 		}
 		return hyper.Link(ref, itoa)
 	}
