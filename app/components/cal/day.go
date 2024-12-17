@@ -84,6 +84,42 @@ func (d Day) Breadcrumb(prefix string, leaf string, shorten bool) string {
 	return items.Table(true)
 }
 
+func (d Day) NotesBreadcrumb(prefix string, leaf string, notesPageCount int, shorten bool) string {
+	wpref := ""
+	_, wn := d.Time.ISOWeek()
+	if wn > 50 && d.Time.Month() == time.January {
+		wpref = "fw"
+	}
+
+	dayLayout := "Monday, 2"
+	if shorten {
+		dayLayout = "Mon, 2"
+	}
+
+	dayItem := header.NewTextItem(d.Time.Format(dayLayout)).RefText(d.Time.Format(time.RFC3339))
+	items := header.Items{
+		header.NewIntItem(d.Time.Year()),
+		header.NewTextItem("Q" + strconv.Itoa(int(math.Ceil(float64(d.Time.Month())/3.)))),
+		header.NewMonthItem(d.Time.Month()).Shorten(shorten),
+		header.NewTextItem("Week " + strconv.Itoa(wn)).RefPrefix(wpref),
+	}
+
+	if len(leaf) > 0 {
+		// - breadcrumb for this page should say "Notes 1", "Notes 2", or "Notes 3"
+		// - hyperlink target for notes 2 and notes 3 should include 2 or 3 at the end respectively while
+		//   target for notes 1 should have no postfix and is the ref we link to from prev and next
+		refText := prefix + d.ref()
+		if notesPageCount > 1 {
+			refText = refText + strconv.Itoa(notesPageCount)
+		}
+		items = append(items, dayItem, header.NewTextItem(leaf+" "+strconv.Itoa(notesPageCount)).RefText(refText).Ref(true))
+	} else {
+		items = append(items, dayItem.Ref(true))
+	}
+
+	return items.Table(true)
+}
+
 func (d Day) LinkLeaf(prefix, leaf string) string {
 	return hyper.Link(prefix+d.ref(), leaf)
 }

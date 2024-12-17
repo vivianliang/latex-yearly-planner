@@ -9,6 +9,7 @@ import (
 	"github.com/kudrykv/latex-yearly-planner/app/components/header"
 	"github.com/kudrykv/latex-yearly-planner/app/components/hyper"
 	"github.com/kudrykv/latex-yearly-planner/app/tex"
+	"github.com/kudrykv/latex-yearly-planner/app/texx"
 )
 
 type Weeks []*Week
@@ -119,13 +120,18 @@ func selectStartWeek(year int, weekStart time.Weekday) Day {
 	return Day{Time: sow}
 }
 
-func (w *Week) WeekNumber(large interface{}) string {
+func (w *Week) WeekNumber(currentWeek, large interface{}) string {
 	wn := w.weekNumber()
 	larg, _ := large.(bool)
 
 	itoa := strconv.Itoa(wn)
 	ref := w.ref()
 	if !larg {
+		if cw, ok := currentWeek.(*Week); ok {
+			if cw.weekNumber() == wn {
+				return texx.EmphCell(itoa)
+			}
+		}
 		return hyper.Link(ref, itoa)
 	}
 
